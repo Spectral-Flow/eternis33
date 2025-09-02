@@ -30,31 +30,31 @@ class PersonalityMatrix {
       guarded: 0,
       open: 0,
       cryptic: 0,
-      direct: 0
+      direct: 0,
     };
-    
+
     // Define personality axes with their ranges
     this.axes = {
       warmth: { min: -10, max: 10, low: 'cold', high: 'warm' },
       approach: { min: -10, max: 10, low: 'pragmatic', high: 'idealist' },
       openness: { min: -10, max: 10, low: 'guarded', high: 'open' },
-      communication: { min: -10, max: 10, low: 'cryptic', high: 'direct' }
+      communication: { min: -10, max: 10, low: 'cryptic', high: 'direct' },
     };
-    
+
     // Initialize archetype
     this.archetype = null;
-    
+
     // Store interaction history
     this.interactionHistory = [];
   }
-  
+
   // Update personality based on player interaction
   updatePersonality(interactionData) {
     // Store interaction for memory anchoring
     this.interactionHistory.push(interactionData);
-    
+
     // Apply weight adjustments based on interaction type
-    switch(interactionData.type) {
+    switch (interactionData.type) {
       case 'positive':
         this.profile.warm += 1;
         this.profile.open += 1;
@@ -73,62 +73,75 @@ class PersonalityMatrix {
         break;
       case 'life_integration':
         // Adjust based on specific life actions
-        if(interactionData.action === 'task_completed') {
+        if (interactionData.action === 'task_completed') {
           this.profile.pragmatic += 1;
-        } else if(interactionData.action === 'journal_entry') {
+        } else if (interactionData.action === 'journal_entry') {
           this.profile.idealist += 1;
           this.profile.open += 1;
-        } else if(interactionData.action === 'skipped_coding') {
+        } else if (interactionData.action === 'skipped_coding') {
           this.profile.cold += 1;
           this.profile.guarded += 1;
         }
         break;
     }
-    
+
     // Normalize weights to stay within defined ranges
     this.normalizeWeights();
-    
+
     // Update archetype based on new weights
     this.updateArchetype();
   }
-  
+
   // Normalize weights to stay within axis ranges
   normalizeWeights() {
-    for(const [key, axis] of Object.entries(this.axes)) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [_key, axis] of Object.entries(this.axes)) {
       const lowTrait = axis.low;
       const highTrait = axis.high;
-      
+
       // Ensure traits stay within bounds
-      this.profile[lowTrait] = Math.max(axis.min, Math.min(axis.max, this.profile[lowTrait]));
-      this.profile[highTrait] = Math.max(axis.min, Math.min(axis.max, this.profile[highTrait]));
+      this.profile[lowTrait] = Math.max(
+        axis.min,
+        Math.min(axis.max, this.profile[lowTrait])
+      );
+      this.profile[highTrait] = Math.max(
+        axis.min,
+        Math.min(axis.max, this.profile[highTrait])
+      );
     }
   }
-  
+
   // Update archetype based on current profile
   updateArchetype() {
     // This would implement the logic to shift archetypes based on personality changes
     // For now, we'll keep the initial archetype but this could be expanded
     // to allow for dynamic archetype shifts
   }
-  
+
   // Get current personality profile
   getProfile() {
-  // Return a shallow copy so callers can't mutate internal state directly
-  return Object.assign({}, this.profile);
+    // Return a shallow copy so callers can't mutate internal state directly
+    return Object.assign({}, this.profile);
   }
-  
+
   // Get personality traits as percentages for UI display
   getTraitPercentages() {
     const percentages = {};
-    for(const [key, axis] of Object.entries(this.axes)) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [_key, axis] of Object.entries(this.axes)) {
       const lowTrait = axis.low;
       const highTrait = axis.high;
-      
+
       // Calculate percentage based on axis range
-      const total = Math.abs(this.profile[lowTrait]) + Math.abs(this.profile[highTrait]);
-      if(total > 0) {
-        percentages[lowTrait] = Math.round((Math.abs(this.profile[lowTrait]) / total) * 100);
-        percentages[highTrait] = Math.round((Math.abs(this.profile[highTrait]) / total) * 100);
+      const total =
+        Math.abs(this.profile[lowTrait]) + Math.abs(this.profile[highTrait]);
+      if (total > 0) {
+        percentages[lowTrait] = Math.round(
+          (Math.abs(this.profile[lowTrait]) / total) * 100
+        );
+        percentages[highTrait] = Math.round(
+          (Math.abs(this.profile[highTrait]) / total) * 100
+        );
       } else {
         percentages[lowTrait] = 50;
         percentages[highTrait] = 50;
@@ -136,7 +149,7 @@ class PersonalityMatrix {
     }
     return percentages;
   }
-  
+
   // Get interaction history
   getInteractionHistory() {
     return this.interactionHistory;

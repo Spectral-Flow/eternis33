@@ -21,58 +21,58 @@ const CompanionCore = require('../src/companion_core');
 
 describe('CompanionCore', () => {
   let companion;
-  
+
   beforeEach(() => {
     companion = new CompanionCore();
   });
-  
+
   test('should initialize with default archetype', async () => {
     const result = await companion.initialize();
     expect(result).toHaveProperty('archetype');
     expect(result).toHaveProperty('profile');
     expect(companion.initialized).toBe(true);
   });
-  
+
   test('should process player input and generate response', async () => {
     // Initialize companion first
     await companion.initialize();
-    
-    const input = "What is this prism I found?";
+
+    const input = 'What is this prism I found?';
     const context = {
-      inventory: ["Prism"],
-      location: "abandoned rail yard",
-      time: "late evening"
+      inventory: ['Prism'],
+      location: 'abandoned rail yard',
+      time: 'late evening',
     };
-    
+
     const response = await companion.processInput(input, context);
     expect(response).toHaveProperty('text');
     expect(response).toHaveProperty('voice');
   });
-  
+
   test('should get appropriate coding game', async () => {
     // Initialize companion first
     await companion.initialize();
-    
+
     const game = companion.getCodingGame();
     expect(game).toHaveProperty('title');
     expect(game).toHaveProperty('description');
     expect(game).toHaveProperty('skills');
   });
-  
+
   test('should process real-world data', async () => {
     // Initialize companion first
     await companion.initialize();
-    
+
     const feedback = companion.processRealWorldData('steps', 1000);
     expect(feedback).toHaveProperty('narrative');
     expect(feedback).toHaveProperty('reward');
     expect(feedback).toHaveProperty('simulationEffect');
   });
-  
+
   test('should get companion status', async () => {
     // Initialize companion first
     await companion.initialize();
-    
+
     const status = companion.getStatus();
     expect(status).toHaveProperty('archetype');
     expect(status).toHaveProperty('profile');
@@ -80,20 +80,20 @@ describe('CompanionCore', () => {
     expect(status).toHaveProperty('skillLevel');
     expect(status).toHaveProperty('realWorldData');
   });
-  
+
   test('should update companion mood', async () => {
     // Initialize companion first
     await companion.initialize();
-    
+
     companion.updateMood('happy');
     // Verify mood is set (would need a getter method in real implementation)
     expect(companion.conversationLayer.currentMood).toBe('happy');
   });
-  
+
   test('should update companion voice tone', async () => {
     // Initialize companion first
     await companion.initialize();
-    
+
     companion.updateVoiceTone('warm');
     // Verify voice tone is set (would need a getter method in real implementation)
     expect(companion.conversationLayer.voiceTone).toBe('warm');

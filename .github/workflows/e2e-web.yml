@@ -2,7 +2,7 @@ name: E2E Web
 
 on:
   pull_request:
-    branches: [ '**' ]
+    branches: ['**']
 
 jobs:
   e2e:

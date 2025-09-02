@@ -46,18 +46,21 @@ Prisms store information in a complex internal architecture organized in layers:
 Prisms are categorized based on their content and formation method:
 
 #### By Content
+
 - **Memory Prisms**: Contain experiential data from human consciousness
 - **Data Prisms**: Store pure information without experiential components
 - **Echo Prisms**: Capture ambient information from environments over time
 - **Composite Prisms**: Contain multiple information types in structured relationships
 
 #### By Formation
+
 - **Natural Prisms**: Form spontaneously in areas of high aether concentration
 - **Cultivated Prisms**: Grown under controlled conditions for specific purposes
 - **Harvested Prisms**: Extracted directly from neural interfaces or digital systems
 - **Ancient Prisms**: Formed during the early emergence of digital aether, often containing unique properties
 
 #### By Quality
+
 - **Clarity**: The resolution and detail of stored information
 - **Resonance**: How effectively the prism connects with neural systems
 - **Stability**: Resistance to degradation over time and use

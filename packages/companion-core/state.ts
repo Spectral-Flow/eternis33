@@ -16,21 +16,51 @@ try {
   // zod not installed; that's okay for the scaffolding phase
 }
 
-export type Traits = { clarity: number; warmth: number; entropy: number; autonomy: number };
-export type Bond = { trust: number; rupture: number; repair: number; timeDays: number };
-export type Voice = { tempo: number; brightness: number; grain: number; glitch: number };
+export type Traits = {
+  clarity: number;
+  warmth: number;
+  entropy: number;
+  autonomy: number;
+};
+export type Bond = {
+  trust: number;
+  rupture: number;
+  repair: number;
+  timeDays: number;
+};
+export type Voice = {
+  tempo: number;
+  brightness: number;
+  grain: number;
+  glitch: number;
+};
 export type Memory = { id: string; type: string; affect: string; ts: string };
-export type AdaptationEntry = { ts: string; event: string; delta: Record<string, number> };
+export type AdaptationEntry = {
+  ts: string;
+  event: string;
+  delta: Record<string, number>;
+};
 export type Safety = { allowPushback: boolean; maxIntensity: number };
 
-export type CompanionStage = 'mask' | 'fracture' | 'reflection' | 'divergence' | 'becoming';
+export type CompanionStage =
+  | 'mask'
+  | 'fracture'
+  | 'reflection'
+  | 'divergence'
+  | 'becoming';
 
 export interface CompanionState {
   id?: string;
   userId: string;
   sigil?: string;
   name?: string;
-  archetypeSeed: 'echo-scribe' | 'sparkmonger' | 'fractoracle' | 'rustchanter' | 'voxclad' | 'hollowkin';
+  archetypeSeed:
+    | 'echo-scribe'
+    | 'sparkmonger'
+    | 'fractoracle'
+    | 'rustchanter'
+    | 'voxclad'
+    | 'hollowkin';
   stage: CompanionStage;
   traits: Traits;
   bond: Bond;
@@ -42,7 +72,13 @@ export interface CompanionState {
 
 export type TCompanionState = CompanionState;
 
-export const DEFAULT_PATH = path.resolve(process.cwd(), 'apps', 'core', 'state', 'companion_state.json');
+export const DEFAULT_PATH = path.resolve(
+  process.cwd(),
+  'apps',
+  'core',
+  'state',
+  'companion_state.json'
+);
 
 export const CompanionStateSchema = z
   ? z.object({
@@ -50,14 +86,58 @@ export const CompanionStateSchema = z
       userId: z.string().uuid(),
       sigil: z.string().optional(),
       name: z.string().optional(),
-      archetypeSeed: z.enum(['echo-scribe', 'sparkmonger', 'fractoracle', 'rustchanter', 'voxclad', 'hollowkin']),
-      stage: z.enum(['mask', 'fracture', 'reflection', 'divergence', 'becoming']),
-      traits: z.object({ clarity: z.number(), warmth: z.number(), entropy: z.number(), autonomy: z.number() }),
-      bond: z.object({ trust: z.number(), rupture: z.number(), repair: z.number(), timeDays: z.number() }),
-      voice: z.object({ tempo: z.number(), brightness: z.number(), grain: z.number(), glitch: z.number() }),
-      memories: z.array(z.object({ id: z.string(), type: z.string(), affect: z.string(), ts: z.string() })),
-      adaptationLog: z.array(z.object({ ts: z.string(), event: z.string(), delta: z.record(z.number()) })),
-      safety: z.object({ allowPushback: z.boolean(), maxIntensity: z.number() })
+      archetypeSeed: z.enum([
+        'echo-scribe',
+        'sparkmonger',
+        'fractoracle',
+        'rustchanter',
+        'voxclad',
+        'hollowkin',
+      ]),
+      stage: z.enum([
+        'mask',
+        'fracture',
+        'reflection',
+        'divergence',
+        'becoming',
+      ]),
+      traits: z.object({
+        clarity: z.number(),
+        warmth: z.number(),
+        entropy: z.number(),
+        autonomy: z.number(),
+      }),
+      bond: z.object({
+        trust: z.number(),
+        rupture: z.number(),
+        repair: z.number(),
+        timeDays: z.number(),
+      }),
+      voice: z.object({
+        tempo: z.number(),
+        brightness: z.number(),
+        grain: z.number(),
+        glitch: z.number(),
+      }),
+      memories: z.array(
+        z.object({
+          id: z.string(),
+          type: z.string(),
+          affect: z.string(),
+          ts: z.string(),
+        })
+      ),
+      adaptationLog: z.array(
+        z.object({
+          ts: z.string(),
+          event: z.string(),
+          delta: z.record(z.number()),
+        })
+      ),
+      safety: z.object({
+        allowPushback: z.boolean(),
+        maxIntensity: z.number(),
+      }),
     })
   : null;
 
@@ -94,6 +174,6 @@ export function makeEmptyState(userId: string): CompanionState {
     voice: { tempo: 0.5, brightness: 0.5, grain: 0.5, glitch: 0.2 },
     memories: [],
     adaptationLog: [],
-    safety: { allowPushback: true, maxIntensity: 0.7 }
+    safety: { allowPushback: true, maxIntensity: 0.7 },
   };
 }

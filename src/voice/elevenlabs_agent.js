@@ -36,26 +36,39 @@ class ElevenLabsAgent {
     this.enabled = !!this.apiKey && !!axios;
 
     if (!this.apiKey) {
-      logger.info('ElevenLabsAgent: No API key provided; voice integration disabled.');
+      logger.info(
+        'ElevenLabsAgent: No API key provided; voice integration disabled.'
+      );
     }
     if (!axios) {
-      logger.info('ElevenLabsAgent: axios not installed; network calls disabled.');
+      logger.info(
+        'ElevenLabsAgent: axios not installed; network calls disabled.'
+      );
     }
   }
 
-  async speak(text, opts = {}) {
+  async speak(text, _opts = {}) {
     if (!this.enabled) {
-      logger.debug('ElevenLabsAgent.speak called while disabled — returning null.');
+      logger.debug(
+        'ElevenLabsAgent.speak called while disabled — returning null.'
+      );
       return null;
     }
 
     const url = `${this.endpoint}/v1/text-to-speech/${this.voice}`;
     try {
-      const response = await axios.post(url, { text }, {
-        headers: { 'xi-api-key': this.apiKey, 'Content-Type': 'application/json' },
-        responseType: 'arraybuffer',
-        timeout: 15000
-      });
+      const response = await axios.post(
+        url,
+        { text },
+        {
+          headers: {
+            'xi-api-key': this.apiKey,
+            'Content-Type': 'application/json',
+          },
+          responseType: 'arraybuffer',
+          timeout: 15000,
+        }
+      );
       logger.debug('ElevenLabsAgent: received audio buffer');
       return response.data; // Buffer of audio
     } catch (err) {

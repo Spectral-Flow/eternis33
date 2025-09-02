@@ -1,6 +1,8 @@
 import { TCompanionState } from './state';
 
-export function evaluateStage(state: TCompanionState): TCompanionState['stage'] {
+export function evaluateStage(
+  state: TCompanionState
+): TCompanionState['stage'] {
   const { memories, bond, traits } = state;
   const meaningful = memories.length;
   const days = bond.timeDays || 0;
@@ -16,7 +18,9 @@ export function evaluateStage(state: TCompanionState): TCompanionState['stage'] 
   }
 
   if (state.stage === 'reflection') {
-    const disagreeCount = state.memories.filter((m) => m.type === 'disagree').length;
+    const disagreeCount = state.memories.filter(
+      (m) => m.type === 'disagree'
+    ).length;
     if (disagreeCount >= 2 && traits.autonomy >= 0.55) return 'divergence';
     return 'reflection';
   }
@@ -29,12 +33,17 @@ export function evaluateStage(state: TCompanionState): TCompanionState['stage'] 
   return state.stage;
 }
 
-export function applyDelta(state: TCompanionState, delta: Partial<TCompanionState['traits']> & Partial<TCompanionState['bond']>) {
+export function applyDelta(
+  state: TCompanionState,
+  delta: Partial<TCompanionState['traits']> & Partial<TCompanionState['bond']>
+) {
   const clamp = (v: number) => Math.max(0, Math.min(1, v));
   const traits = { ...state.traits } as any;
-  for (const k of Object.keys(delta)) if (k in traits) traits[k] = clamp((delta as any)[k]);
+  for (const k of Object.keys(delta))
+    if (k in traits) traits[k] = clamp((delta as any)[k]);
   const bond = { ...state.bond } as any;
-  for (const k of ['trust', 'rupture', 'repair']) if ((delta as any)[k] !== undefined) bond[k] = clamp((delta as any)[k]);
+  for (const k of ['trust', 'rupture', 'repair'])
+    if ((delta as any)[k] !== undefined) bond[k] = clamp((delta as any)[k]);
   const next = { ...state, traits, bond } as TCompanionState;
   const nextStage = evaluateStage(next);
   return { ...next, stage: nextStage } as TCompanionState;

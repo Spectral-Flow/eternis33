@@ -22,15 +22,21 @@ try {
   const winston = require('winston');
   logger = winston.createLogger({
     level: 'debug',
-    transports: [new winston.transports.Console({ format: winston.format.simple() })]
+    transports: [
+      new winston.transports.Console({ format: winston.format.simple() }),
+    ],
   });
 } catch (e) {
   // winston not installed; use console with simple methods
   logger = {
-    debug: console.debug ? console.debug.bind(console) : console.log.bind(console),
+    debug: console.debug
+      ? console.debug.bind(console)
+      : console.log.bind(console),
     info: console.info ? console.info.bind(console) : console.log.bind(console),
     warn: console.warn ? console.warn.bind(console) : console.log.bind(console),
-    error: console.error ? console.error.bind(console) : console.error.bind(console)
+    error: console.error
+      ? console.error.bind(console)
+      : console.error.bind(console),
   };
 }
 
