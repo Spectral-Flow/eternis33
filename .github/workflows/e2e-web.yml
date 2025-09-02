@@ -17,6 +17,11 @@ jobs:
         run: npm ci || npm install
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
+      - name: Start prototype server
+        run: |
+          nohup node scripts/serve-prototype.js > /dev/null 2>&1 &
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
       - name: Run web smoke tests
         working-directory: apps/web/e2e
         env:
