@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spectra Mood Ring Demo</title>
+  <link rel="stylesheet" href="./mood_ring.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel stage">
+      <div id="ringHost" class="ring-host">
+        <div class="camera-mask"><video id="cam" autoplay muted playsinline></video></div>
+        <svg class="ring-svg" viewBox="0 0 100 100">
+          <!-- base circle shadow -->
+          <defs>
+            <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#000" stop-opacity="0.35" />
+              <stop offset="60%" stop-color="#000" stop-opacity="0.1" />
+              <stop offset="100%" stop-color="#000" stop-opacity="0.0" />
+            </radialGradient>
+            <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="0.8" />
+            </filter>
+          </defs>
+          <circle cx="50" cy="50" r="44" fill="url(#innerGlow)" />
+          <!-- mood arc stroke dynamically painted by JS (stroke-dasharray) -->
+          <circle id="moodArc" cx="50" cy="50" r="44" fill="none" stroke="#A3D9FF" stroke-width="4" stroke-linecap="round" filter="url(#softBlur)" />
+          <!-- orbiting glints for life -->
+          <g id="glints"></g>
+        </svg>
+        <div id="face" class="face"></div>
+      </div>
+    </div>
+
+    <div class="panel controls">
+      <h1>Spectra — Mood Ring</h1>
+      <div class="subtitle">Gentle twilight UI with emotional halo and emergent micro-expressions.</div>
+
+      <div class="row">
+        <label for="stateSel">State</label>
+        <select id="stateSel">
+          <option value="calm">Calm</option>
+          <option value="joy">Joy</option>
+          <option value="passion">Passion/Intensity</option>
+          <option value="anxiety">Anxiety/Pain</option>
+          <option value="jealousy">Jealousy/Irritation</option>
+          <option value="creative">Creative Flow</option>
+        </select>
+      </div>
+
+  <div class="row"><label for="intensity">Intensity</label><input title="Intensity" aria-label="Intensity" type="range" id="intensity" min="0" max="1" step="0.01" value="0.2" /></div>
+  <div class="row"><label for="tempo">Tempo</label><input title="Tempo" aria-label="Tempo" type="range" id="tempo" min="0.2" max="3" step="0.05" value="0.8" /></div>
+  <div class="row"><label for="sparks">Creative sparks</label><input title="Creative sparks" aria-label="Creative sparks" type="checkbox" id="sparks" checked /></div>
+      <div class="row"><label>Camera overlay</label><button id="btnCamera">Enable</button></div>
+      <div class="row"><label>Hum ambience</label><button id="btnHum">Play</button></div>
+
+      <h3>Legend</h3>
+      <div class="legend">
+        <div class="swatch calm"></div><small>Calm</small>
+        <div class="swatch joy"></div><small>Joy</small>
+        <div class="swatch passion"></div><small>Passion</small>
+        <div class="swatch anxiety"></div><small>Anxiety</small>
+        <div class="swatch jealousy"></div><small>Jealousy</small>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./mood_ring.js"></script>
+</body>
+</html>

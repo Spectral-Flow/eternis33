@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eternis-33: Prototype Shard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0A0A12;
+            color: #E0E0E6;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: #1A1A24;
+            border-bottom: 2px solid #00F3FF;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #00F3FF;
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.7);
+        }
+        
+        h2 {
+            color: #9D00FF;
+            border-bottom: 1px solid #9D00FF;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #FF00E6;
+        }
+        
+        .card {
+            background-color: #1A1A24;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border-left: 3px solid #00F3FF;
+        }
+        
+        .card h3 {
+            color: #00F3FF;
+            margin-top: 0;
+        }
+        
+        .preview {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .preview iframe {
+            width: 375px;
+            height: 812px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background-color: #1A1A24;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .feature h3 {
+            color: #00F3FF;
+            margin-top: 0;
+        }
+        
+        .cta {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #00F3FF, #9D00FF);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.8);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+            background-color: #1A1A24;
+            border-top: 1px solid #2A2A36;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>ETERNIS-33: PROTOTYPE SHARD</h1>
+        <p class="subtitle">Discover the Prisms. Uncover the truth.</p>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h3>Project Overview</h3>
+            <p>Eternis-33: Prototype Shard is an AR mobile game set in a cyberpunk world where players collect glowing crystal "Prisms" anchored to real-world GPS coordinates.</p>
+        </div>
+        
+        <h2>UI Preview</h2>
+        <div class="preview">
+            <iframe src="assets/ui/ui_mockup.html" title="UI Mockup"></iframe>
+        </div>
+
+        <h2>Spectra Mood Ring Demo</h2>
+        <div class="preview">
+            <iframe src="assets/ui/mood_ring.html" title="Mood Ring Demo"></iframe>
+            <p class="subtitle">Twilight palette, dynamic emotional halo, optional camera overlay and ambient hum.</p>
+        </div>
+        
+        <h2>Core Features</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>AR Visualization</h3>
+                <p>Experience the cyberpunk world of Eternis-33 through your device's camera as you discover glowing Prism crystals in the real world.</p>
+            </div>
+            <div class="feature">
+                <h3>GPS Integration</h3>
+                <p>Prisms are anchored to real-world locations, encouraging exploration and discovery in your environment.</p>
+            </div>
+            <div class="feature">
+                <h3>Collection Mechanics</h3>
+                <p>Tap Prisms to collect them and add to your inventory, building your collection of these mysterious data crystals.</p>
+            </div>
+            <div class="feature">
+                <h3>Multiplayer Persistence</h3>
+                <p>Prisms are visible to all players in the same location, creating a shared experience and encouraging social interaction.</p>
+            </div>
+            <div class="feature">
+                <h3>Cyberpunk Aesthetic</h3>
+                <p>Immerse yourself in a neon-drenched visual style with glowing effects and a futuristic interface.</p>
+            </div>
+            <div class="feature">
+                <h3>Rich Lore</h3>
+                <p>Uncover the mysteries of Eternis-33 as you collect Prisms and learn about this data-infused world.</p>
+            </div>
+        </div>
+        
+        <h2>Technical Implementation</h2>
+        <div class="card">
+            <h3>Engine & Platforms</h3>
+            <ul>
+                <li><strong>Engine:</strong> Godot 4.x</li>
+                <li><strong>Platforms:</strong> Android (ARCore), iOS (ARKit)</li>
+                <li><strong>AR Plugins:</strong> godot-arcore (Android), equivalent for iOS</li>
+                <li><strong>Map/GPS:</strong> OpenStreetMap + Mapbox API</li>
+                <li><strong>Networking:</strong> WebSocket / lightweight backend</li>
+            </ul>
+        </div>
+        
+        <div class="cta">
+            <a href="docs/project_specification.md" class="button">View Full Specifications</a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Eternis-33: Prototype Shard - A cyberpunk AR experience</p>
+    </footer>
+</body>
+</html>

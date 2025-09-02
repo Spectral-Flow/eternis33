@@ -1,0 +1,26 @@
+name: E2E Web
+
+on:
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install
+        run: npm ci || npm install
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+      - name: Run web smoke tests
+        working-directory: apps/web/e2e
+        env:
+          E2E_BASE_URL: http://localhost:3000
+        run: |
+          npm ci || npm install
+          npx playwright test --reporter=dot

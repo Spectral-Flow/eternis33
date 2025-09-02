@@ -1,0 +1,9 @@
+{
+  "name": "@spectral-flow/sentinel-guard",
+  "version": "0.1.0",
+  "main": "src/policies.ts",
+  "types": "src/policies.ts",
+  "scripts": {
+    "test": "jest"
+  }
+}

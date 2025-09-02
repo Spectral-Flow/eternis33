@@ -1,0 +1,16 @@
+export enum Tenet {
+  PRESERVE_LIFE = 0,
+  SHIELD_VULNERABLE = 1,
+  RESTRAIN_POWER = 2,
+}
+
+export const CONFIG = {
+  MAX_PROPORTIONALITY: 0.2,
+  CIVILIAN_RISK_RED: 0.7,
+} as const;
+
+export enum Mode {
+  DEFENSE = "SHIELD_MATRIX",
+  OFFENSIVE = "PRECISION_INTERDICTION",
+  ATTACK = "FINAL_SAFEGUARD",
+}

@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Install
+        run: |
+          npm ci || npm install
+      - name: Typecheck packages
+        run: |
+          npx tsc -p packages/spectra-prime/tsconfig.json --noEmit
+          npx tsc -p packages/sentinel-guard/tsconfig.json --noEmit
+          npx tsc -p packages/sfdp-sim/tsconfig.json --noEmit
+      - name: Test
+        run: npm test --silent
+      - name: Build packages
+        run: |
+          npm --prefix packages/spectra-prime run build
+          npm --prefix packages/sentinel-guard run build || true
+          npm --prefix packages/sfdp-sim run build || true

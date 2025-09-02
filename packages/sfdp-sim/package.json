@@ -1,0 +1,9 @@
+{
+  "name": "@spectral-flow/sfdp-sim",
+  "version": "0.1.0",
+  "main": "src/engine.ts",
+  "types": "src/engine.ts",
+  "scripts": {
+    "test": "jest"
+  }
+}

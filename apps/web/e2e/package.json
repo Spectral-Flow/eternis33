@@ -1,0 +1,11 @@
+{
+  "name": "e2e-web",
+  "private": true,
+  "scripts": {
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "typescript": "^5.9.2"
+  }
+}

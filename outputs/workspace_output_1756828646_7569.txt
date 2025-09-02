@@ -1,0 +1,3 @@
+/workspace/eternis33_prototype/src/assets/textures/noise/basic_noise.png
+/workspace/eternis33_prototype/src/assets/textures/noise/fractal_noise.png
+/workspace/eternis33_prototype/src/assets/textures/noise/shimmer_noise.png
