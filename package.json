@@ -10,7 +10,11 @@
     "lint": "eslint . --ext .js",
     "format": "prettier --write .",
     "add-headers": "node scripts/add_license_headers.js --apply",
-    "e2e:web": "npm --prefix apps/web/e2e run e2e",
+    "doctor": "pnpm -r run doctor",
+    "e2e:web": "pnpm --filter @spectra/web-e2e e2e",
+    "e2e:mobile:ios": "pnpm --filter @spectra/mobile-e2e e2e:ios:test",
+    "e2e:mobile:android": "pnpm --filter @spectra/mobile-e2e e2e:android:test",
+    "e2e:all": "pnpm e2e:web && pnpm e2e:mobile:ios && pnpm e2e:mobile:android",
     "serve:proto": "node scripts/serve-prototype.js",
     "e2e:web:local": "start /B node scripts/serve-prototype.js && timeout 2 && npm run e2e:web",
     "pnpme2e:web": "pnpm -C apps/web/e2e run e2e",
@@ -56,5 +60,11 @@
     "axios": "^1.4.0",
     "dotenv": "^16.1.4",
     "winston": "^3.9.0"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx,json,md,yml,yaml}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
