@@ -1,28 +1,32 @@
-/** Minimal Detox config placeholder. Adjust app IDs and binary paths for your project. */
 module.exports = {
   testRunner: 'jest',
   runnerConfig: 'jest.config.js',
+  specs: 'tests',
+  behavior: { init: { exposeGlobals: true } },
   apps: {
-    'ios.debug': {
+    'ios.sim.debug': {
       type: 'ios.app',
-      build: 'echo "Build iOS app here (xcodebuild)"',
-      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/App.app',
+      binaryPath:
+        'ios/build/Build/Products/Debug-iphonesimulator/EternisApp.app',
+      build:
+        'xcodebuild -workspace ios/EternisApp.xcworkspace -scheme EternisApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build',
     },
-    'android.debug': {
+    'android.emu.debug': {
       type: 'android.apk',
-      build: 'echo "Build Android app here (gradle)"',
       binaryPath: 'android/app/build/outputs/apk/debug/app-debug.apk',
+      build:
+        'cd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && cd ..',
     },
   },
   devices: {
     simulator: { type: 'ios.simulator', device: { type: 'iPhone 14' } },
     emulator: {
       type: 'android.emulator',
-      device: { avdName: 'Pixel_5_API_31' },
+      device: { avdName: 'Pixel_6_API_34' },
     },
   },
   configurations: {
-    'ios.debug': { device: 'simulator', app: 'ios.debug' },
-    'android.debug': { device: 'emulator', app: 'android.debug' },
+    'ios.sim.debug': { device: 'simulator', app: 'ios.sim.debug' },
+    'android.emu.debug': { device: 'emulator', app: 'android.emu.debug' },
   },
 };
