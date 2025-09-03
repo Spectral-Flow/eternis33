@@ -46,7 +46,7 @@
   },
   "optionalDependencies": {
     "axios": "^1.4.0",
-    "dotenv": "^16.1.4",
+    "dotenv": "^17.2.1",
     "winston": "^3.9.0"
   }
 }
