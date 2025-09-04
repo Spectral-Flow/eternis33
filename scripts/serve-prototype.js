@@ -10,5 +10,7 @@ app.use(express.static(root));
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
-  console.log(`Prototype server listening on http://localhost:${port} (root=${root})`);
+  console.log(
+    `Prototype server listening on http://localhost:${port} (root=${root})`
+  );
 });

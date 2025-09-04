@@ -1,4 +1,5 @@
 module.exports = {
   testTimeout: 120000,
-  testMatch: ['**/tests/**/*.e2e.js'],
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
+  preset: 'react-native',
 };

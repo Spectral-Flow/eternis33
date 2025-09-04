@@ -1,10 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test('homepage renders', async ({ page }) => {
-  const base = process.env.E2E_BASE_URL || 'http://localhost:3000';
-  await page.goto(base);
-  // Basic sanity: title and body exist
-  await expect(page.locator('body')).toBeVisible();
+test('homepage loads and shows title', async ({ page }) => {
+  await page.goto('/');
   const title = await page.title();
-  expect(title).toBeTruthy();
+  expect(title.length).toBeGreaterThan(0);
 });

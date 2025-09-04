@@ -15,9 +15,16 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const EXTS = ['.js', '.ts', '.py'];
-const IGNORE_DIRS = new Set(['node_modules', '.git', '.vscode', 'outputs', 'eternis33_prototype']);
+const IGNORE_DIRS = new Set([
+  'node_modules',
+  '.git',
+  '.vscode',
+  'outputs',
+  'eternis33_prototype',
+]);
 
-const HEADER = `/*\n * Eternis-33 Companion — Core AI + Simulation Framework\n * Copyright (c) 2025 Remedium Music LLC. All rights reserved.\n *\n * Licensed under the Eternis-33 Companion License.\n * You may not use this file except in compliance with the License.\n *\n * A copy of the License should have been provided with this software.\n * If not, contact legal@remediummusic.com\n *\n * NOTICE:\n * - AI personality, dialogue, and learning models are proprietary.\n * - Unauthorized commercial use, modification, or redistribution is prohibited.\n * - Personal/educational experimentation is allowed within the License terms.\n *\n * Remedium Music LLC | Denver, CO | www.remediummusic.com\n */\n\n`;
+const HEADER =
+  '/*\n * Eternis-33 Companion — Core AI + Simulation Framework\n * Copyright (c) 2025 Remedium Music LLC. All rights reserved.\n *\n * Licensed under the Eternis-33 Companion License.\n * You may not use this file except in compliance with the License.\n *\n * A copy of the License should have been provided with this software.\n * If not, contact legal@remediummusic.com\n *\n * NOTICE:\n * - AI personality, dialogue, and learning models are proprietary.\n * - Unauthorized commercial use, modification, or redistribution is prohibited.\n * - Personal/educational experimentation is allowed within the License terms.\n *\n * Remedium Music LLC | Denver, CO | www.remediummusic.com\n */\n\n';
 
 function isBinaryFile(filePath) {
   // basic heuristic: treat files with NUL as binary
@@ -74,17 +81,19 @@ function main() {
     if (res) results.push(res);
   });
 
-  const toChange = results.filter(r => r.changed === false);
-  const changed = results.filter(r => r.changed === true);
+  const toChange = results.filter((r) => r.changed === false);
+  const changed = results.filter((r) => r.changed === true);
 
   if (!apply) {
     console.log('License header batch tool (dry-run)');
     console.log('Files that would receive a header:');
-    toChange.forEach(r => console.log('  ', path.relative(ROOT, r.file)));
+    toChange.forEach((r) => console.log('  ', path.relative(ROOT, r.file)));
     console.log('\nRun with --apply to add headers.');
   } else {
     console.log('License header batch tool (apply mode)');
-    changed.forEach(r => console.log('Added header to:', path.relative(ROOT, r.file)));
+    changed.forEach((r) =>
+      console.log('Added header to:', path.relative(ROOT, r.file))
+    );
     if (changed.length === 0) console.log('No files needed changes.');
   }
 }

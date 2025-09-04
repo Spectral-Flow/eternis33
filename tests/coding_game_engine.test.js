@@ -21,7 +21,7 @@ const CodingGameEngine = require('../src/coding_game_engine');
 
 describe('CodingGameEngine', () => {
   let gameEngine;
-  
+
   beforeEach(() => {
     // Create a mock personality matrix for testing
     const mockPersonalityMatrix = {
@@ -33,20 +33,20 @@ describe('CodingGameEngine', () => {
         guarded: 1,
         open: 6,
         cryptic: 2,
-        direct: 5
+        direct: 5,
       }),
-      updatePersonality: jest.fn()
+      updatePersonality: jest.fn(),
     };
-    
+
     gameEngine = new CodingGameEngine(mockPersonalityMatrix);
   });
-  
+
   test('should assess player skill level', () => {
     const skillLevel = gameEngine.assessSkillLevel();
     expect(skillLevel).toBeGreaterThanOrEqual(1);
     expect(skillLevel).toBeLessThanOrEqual(10);
   });
-  
+
   test('should get appropriate coding game', () => {
     const game = gameEngine.getCodingGame();
     expect(game).toHaveProperty('title');
@@ -55,28 +55,28 @@ describe('CodingGameEngine', () => {
     expect(game).toHaveProperty('narrative');
     expect(game).toHaveProperty('skills');
   });
-  
+
   test('should create game instance with correct properties', () => {
     const game = gameEngine.createGameInstance('prism_repair', 2);
     expect(game.title).toBe('Prism Repair');
     expect(game.difficulty).toBe('Beginner');
   });
-  
+
   test('should update game progress', () => {
     gameEngine.updateProgress('prism_repair_1', true);
-    
+
     const progress = gameEngine.getProgressReport();
     expect(progress.gameProgress['prism_repair_1'].attempts).toBe(1);
     expect(progress.gameProgress['prism_repair_1'].successes).toBe(1);
   });
-  
+
   test('should get progress report', () => {
     const progress = gameEngine.getProgressReport();
     expect(progress).toHaveProperty('skillLevel');
     expect(progress).toHaveProperty('unlockedGames');
     expect(progress).toHaveProperty('gameProgress');
   });
-  
+
   test('should get narrative wrapper for game type', () => {
     const wrapper = gameEngine.getNarrativeWrapper('prism_repair');
     expect(wrapper).toHaveProperty('intro');

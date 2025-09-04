@@ -17,6 +17,7 @@ Eternis-33: Prototype Shard is a location-based AR game where players explore th
 ## Technical Implementation
 
 ### Engine & Platforms
+
 - **Engine**: Godot 4.x
 - **Platforms**: Android (ARCore), iOS (ARKit)
 - **AR Plugins**: godot-arcore (Android), equivalent for iOS
@@ -57,12 +58,14 @@ eternis33_prototype/
 ## Visual Design
 
 ### Prism Visualization
+
 - Floating neon crystal with animated shader effects
 - Glowing bloom effect with color variations based on Prism type
 - Subtle animation (rotation, hovering)
 - Particle effects on interaction
 
 ### UI Design
+
 - Minimalist cyberpunk aesthetic
 - Neon color palette (blues, magentas, cyan)
 - Clean white text with sans-serif fonts
@@ -79,12 +82,14 @@ eternis33_prototype/
 ## Setup & Development
 
 ### Requirements
+
 - Godot 4.x
 - Android SDK with ARCore support (for Android builds)
 - Xcode with ARKit support (for iOS builds)
 - OpenStreetMap/Mapbox API key
 
 ### Building the Project
+
 1. Clone the repository
 2. Open the project in Godot 4.x
 3. Configure your API keys in the appropriate configuration files
@@ -95,6 +100,7 @@ eternis33_prototype/
 Developed as part of the Eternis-33 cyberpunk world concept.
 
 ### Assets
+
 - Noise textures generated using Python with NumPy and PIL
 - UI mockup created with HTML/CSS
 - Background image from Unsplash (for mockup only)

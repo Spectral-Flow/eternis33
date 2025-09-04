@@ -1,7 +1,7 @@
 export type ExperienceEvent = {
   id: string;
   ts: number;
-  channel: "text" | "voice" | "camera" | "system" | "env";
+  channel: 'text' | 'voice' | 'camera' | 'system' | 'env';
   payload: any;
   tags?: string[];
 };
@@ -17,7 +17,10 @@ export type EmotionVector = {
   passion: number;
 };
 
-export type EmotionState = EmotionVector & { intensity: number; lastUpdate: number };
+export type EmotionState = EmotionVector & {
+  intensity: number;
+  lastUpdate: number;
+};
 
 export type MemoryTrace = {
   id: string;

@@ -1,3 +1,14 @@
-.spectra-ring { width: 200px; height: 200px; display: block; }
-.spectra-eyes { width: 200px; height: 100px; display: block; }
-.spectra-consent { display: grid; gap: 8px; }
+.spectra-ring {
+  width: 200px;
+  height: 200px;
+  display: block;
+}
+.spectra-eyes {
+  width: 200px;
+  height: 100px;
+  display: block;
+}
+.spectra-consent {
+  display: grid;
+  gap: 8px;
+}
