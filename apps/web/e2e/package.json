@@ -1,11 +1,13 @@
 {
-  "name": "e2e-web",
+  "name": "@spectra/web-e2e",
   "private": true,
   "scripts": {
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "e2e:headed": "playwright test --headed",
+    "e2e:report": "playwright show-report"
   },
   "devDependencies": {
-    "@playwright/test": "^1.46.0",
+    "@playwright/test": "^1.47.0",
     "typescript": "^5.9.2"
   }
 }

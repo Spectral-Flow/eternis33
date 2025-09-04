@@ -24,81 +24,121 @@ class PersonalityQuiz {
     this.questions = [
       {
         id: 1,
-        text: "When facing an unknown threat in Eternis-33, you:",
+        text: 'When facing an unknown threat in Eternis-33, you:',
         choices: [
-          { text: "Analyze its patterns first", weights: { pragmatic: 2, idealist: -1 } },
-          { text: "Trust your instincts over data", weights: { idealist: 2, pragmatic: -1 } },
-          { text: "Hide and observe from shadows", weights: { guarded: 2, open: -1 } },
-          { text: "Confront it directly", weights: { open: 2, guarded: -1 } }
-        ]
+          {
+            text: 'Analyze its patterns first',
+            weights: { pragmatic: 2, idealist: -1 },
+          },
+          {
+            text: 'Trust your instincts over data',
+            weights: { idealist: 2, pragmatic: -1 },
+          },
+          {
+            text: 'Hide and observe from shadows',
+            weights: { guarded: 2, open: -1 },
+          },
+          { text: 'Confront it directly', weights: { open: 2, guarded: -1 } },
+        ],
       },
       {
         id: 2,
-        text: "Your preferred approach to problem-solving:",
+        text: 'Your preferred approach to problem-solving:',
         choices: [
-          { text: "Methodical and precise", weights: { pragmatic: 2, cryptic: -1 } },
-          { text: "Creative and intuitive", weights: { idealist: 2, direct: -1 } },
-          { text: "Collaborative and supportive", weights: { warm: 2, cold: -1 } },
-          { text: "Solo and independent", weights: { cold: 2, warm: -1 } }
-        ]
+          {
+            text: 'Methodical and precise',
+            weights: { pragmatic: 2, cryptic: -1 },
+          },
+          {
+            text: 'Creative and intuitive',
+            weights: { idealist: 2, direct: -1 },
+          },
+          {
+            text: 'Collaborative and supportive',
+            weights: { warm: 2, cold: -1 },
+          },
+          { text: 'Solo and independent', weights: { cold: 2, warm: -1 } },
+        ],
       },
       {
         id: 3,
-        text: "In the Drift, you value:",
+        text: 'In the Drift, you value:',
         choices: [
-          { text: "Clear signals over mysterious whispers", weights: { direct: 2, cryptic: -1 } },
-          { text: "Ancient echoes more than present facts", weights: { cryptic: 2, direct: -1 } },
-          { text: "Stability and structure", weights: { pragmatic: 2, idealist: -1 } },
-          { text: "Possibility and change", weights: { idealist: 2, pragmatic: -1 } }
-        ]
+          {
+            text: 'Clear signals over mysterious whispers',
+            weights: { direct: 2, cryptic: -1 },
+          },
+          {
+            text: 'Ancient echoes more than present facts',
+            weights: { cryptic: 2, direct: -1 },
+          },
+          {
+            text: 'Stability and structure',
+            weights: { pragmatic: 2, idealist: -1 },
+          },
+          {
+            text: 'Possibility and change',
+            weights: { idealist: 2, pragmatic: -1 },
+          },
+        ],
       },
       {
         id: 4,
-        text: "When meeting a Hollowkin, you:",
+        text: 'When meeting a Hollowkin, you:',
         choices: [
-          { text: "Extend a hand in trust", weights: { warm: 2, cold: -1 } },
-          { text: "Demand proof of their intentions", weights: { cold: 2, warm: -1 } },
-          { text: "Listen carefully to their silence", weights: { guarded: 2, open: -1 } },
-          { text: "Speak first to establish dominance", weights: { open: 2, guarded: -1 } }
-        ]
+          { text: 'Extend a hand in trust', weights: { warm: 2, cold: -1 } },
+          {
+            text: 'Demand proof of their intentions',
+            weights: { cold: 2, warm: -1 },
+          },
+          {
+            text: 'Listen carefully to their silence',
+            weights: { guarded: 2, open: -1 },
+          },
+          {
+            text: 'Speak first to establish dominance',
+            weights: { open: 2, guarded: -1 },
+          },
+        ],
       },
       {
         id: 5,
-        text: "Your relationship with technology:",
+        text: 'Your relationship with technology:',
         choices: [
           { text: "I'm a master of my tools", weights: { pragmatic: 2 } },
           { text: "I'm guided by its whispers", weights: { idealist: 2 } },
-          { text: "I control it carefully", weights: { guarded: 2 } },
-          { text: "I embrace its chaos", weights: { open: 2 } }
-        ]
-      }
+          { text: 'I control it carefully', weights: { guarded: 2 } },
+          { text: 'I embrace its chaos', weights: { open: 2 } },
+        ],
+      },
     ];
-    
+
     this.archetypes = {
-      "Shadow": { 
-        description: "A skeptical, loyal companion with a sharp wit",
-        weights: { cold: 1, pragmatic: 1, guarded: 1, direct: 1 }
+      Shadow: {
+        description: 'A skeptical, loyal companion with a sharp wit',
+        weights: { cold: 1, pragmatic: 1, guarded: 1, direct: 1 },
       },
-      "Oracle": {
-        description: "A supportive, visionary guide with mystical tendencies",
-        weights: { warm: 1, idealist: 1, open: 1, cryptic: 1 }
+      Oracle: {
+        description: 'A supportive, visionary guide with mystical tendencies',
+        weights: { warm: 1, idealist: 1, open: 1, cryptic: 1 },
       },
-      "Warden": {
-        description: "A structured, protective partner focused on growth",
-        weights: { warm: 1, pragmatic: 1, guarded: 1, direct: 1 }
+      Warden: {
+        description: 'A structured, protective partner focused on growth',
+        weights: { warm: 1, pragmatic: 1, guarded: 1, direct: 1 },
       },
-      "Fractoracle": {
-        description: "A glitchy prophet who speaks in half-coded riddles",
-        weights: { cold: 1, idealist: 1, open: 1, cryptic: 2 }
+      Fractoracle: {
+        description: 'A glitchy prophet who speaks in half-coded riddles',
+        weights: { cold: 1, idealist: 1, open: 1, cryptic: 2 },
       },
-      "Sparkmonger": {
-        description: "A scrappy, fast-talking guide who speaks in mechanical slang",
-  weights: { warm: 1, pragmatic: 1, open: 2, direct: 1, guarded: 2 }
+      Sparkmonger: {
+        description:
+          'A scrappy, fast-talking guide who speaks in mechanical slang',
+        weights: { warm: 1, pragmatic: 1, open: 2, direct: 1, guarded: 2 },
       },
-      "Echo-Scribe": {
-        description: "A thoughtful, archival companion with a poetic edge",
-        weights: { warm: 1, idealist: 1, guarded: 1, cryptic: 1 }
-      }
+      'Echo-Scribe': {
+        description: 'A thoughtful, archival companion with a poetic edge',
+        weights: { warm: 1, idealist: 1, guarded: 1, cryptic: 1 },
+      },
     };
   }
 
@@ -118,7 +158,7 @@ class PersonalityQuiz {
       guarded: 0,
       open: 0,
       cryptic: 0,
-      direct: 0
+      direct: 0,
     };
 
     // Apply weights from responses
@@ -133,7 +173,9 @@ class PersonalityQuiz {
     // Find archetype with closest matching weights
     // Determine dominant trait(s)
     const maxValue = Math.max(...Object.values(finalWeights));
-    const dominantTraits = Object.keys(finalWeights).filter(k => finalWeights[k] === maxValue);
+    const dominantTraits = Object.keys(finalWeights).filter(
+      (k) => finalWeights[k] === maxValue
+    );
 
     // Simple mapping for deterministic archetype selection used by tests
     // If 'open' is among the dominant traits, prefer Sparkmonger
@@ -144,9 +186,9 @@ class PersonalityQuiz {
     const traitToArchetype = {
       pragmatic: 'Shadow',
       idealist: 'Oracle',
-  warm: 'Warden',
-  guarded: 'Sparkmonger',
-      cold: 'Fractoracle'
+      warm: 'Warden',
+      guarded: 'Sparkmonger',
+      cold: 'Fractoracle',
     };
 
     // If any dominant trait maps directly, return that archetype
@@ -157,7 +199,7 @@ class PersonalityQuiz {
     }
 
     // Fallback: score archetypes by weighted sum (legacy behavior)
-    let bestMatch = "";
+    let bestMatch = '';
     let bestScore = -Infinity;
 
     for (const [archetypeName, archetype] of Object.entries(this.archetypes)) {
@@ -173,7 +215,7 @@ class PersonalityQuiz {
 
     return {
       archetype: bestMatch,
-      weights: finalWeights
+      weights: finalWeights,
     };
   }
 }

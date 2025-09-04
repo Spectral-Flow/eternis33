@@ -1,447 +1,486 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eternis-33: Prototype Shard UI Mockup</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&family=Exo+2:wght@300;500&display=swap');
-        
-        :root {
-            /* Primary Colors */
-            --aether-blue: #00F3FF;
-            --prism-purple: #9D00FF;
-            --chrome-silver: #E0E0E6;
-            
-            /* Secondary Colors */
-            --neural-pink: #FF00E6;
-            --warning-red: #FF3C41;
-            --rust-orange: #FF7300;
-            --code-green: #00FF9F;
-            
-            /* Background Colors */
-            --night-black: #0A0A12;
-            --urban-gray: #1A1A24;
-            --smog-purple: #2A2A36;
-            
-            /* Typography */
-            --header-font: 'Rajdhani', sans-serif;
-            --body-font: 'Exo 2', sans-serif;
-            --ui-font: 'Orbitron', sans-serif;
+      @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&family=Exo+2:wght@300;500&display=swap');
+
+      :root {
+        /* Primary Colors */
+        --aether-blue: #00f3ff;
+        --prism-purple: #9d00ff;
+        --chrome-silver: #e0e0e6;
+
+        /* Secondary Colors */
+        --neural-pink: #ff00e6;
+        --warning-red: #ff3c41;
+        --rust-orange: #ff7300;
+        --code-green: #00ff9f;
+
+        /* Background Colors */
+        --night-black: #0a0a12;
+        --urban-gray: #1a1a24;
+        --smog-purple: #2a2a36;
+
+        /* Typography */
+        --header-font: 'Rajdhani', sans-serif;
+        --body-font: 'Exo 2', sans-serif;
+        --ui-font: 'Orbitron', sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: var(--night-black);
+        color: white;
+        font-family: var(--body-font);
+        overflow: hidden;
+      }
+
+      .ar-view {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background-image: url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+
+      .ar-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          rgba(10, 10, 18, 0) 0%,
+          rgba(10, 10, 18, 0.3) 100%
+        );
+        pointer-events: none;
+      }
+
+      /* UI Elements */
+      .compass {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 40px;
+        background-color: rgba(10, 10, 18, 0.7);
+        border: 1px solid var(--aether-blue);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px var(--aether-blue);
+      }
+
+      .compass-needle {
+        width: 120px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--aether-blue), white);
+        position: relative;
+        transform: rotate(45deg);
+      }
+
+      .compass-needle:after {
+        content: 'N';
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        color: white;
+        font-family: var(--ui-font);
+        font-size: 14px;
+      }
+
+      .mini-map {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 100px;
+        height: 100px;
+        background-color: rgba(10, 10, 18, 0.7);
+        border: 1px solid var(--aether-blue);
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 0 10px var(--aether-blue);
+      }
+
+      .mini-map-content {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          var(--aether-blue) 0%,
+          transparent 5%
+        );
+        position: relative;
+      }
+
+      .map-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            rgba(0, 243, 255, 0.2) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(0, 243, 255, 0.2) 1px,
+            transparent 1px
+          );
+        background-size: 10px 10px;
+      }
+
+      .map-prism {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: var(--prism-purple);
+        border-radius: 50%;
+        box-shadow: 0 0 5px var(--prism-purple);
+      }
+
+      .prism-counter {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        align-items: center;
+        font-family: var(--ui-font);
+        color: white;
+      }
+
+      .prism-icon {
+        width: 30px;
+        height: 30px;
+        background-color: var(--prism-purple);
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+        margin-right: 10px;
+        box-shadow: 0 0 10px var(--prism-purple);
+      }
+
+      .prism-count {
+        font-size: 24px;
+        text-shadow: 0 0 5px var(--prism-purple);
+      }
+
+      .scan-button {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+        background-color: rgba(10, 10, 18, 0.7);
+        border: 2px solid var(--aether-blue);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 15px var(--aether-blue);
+      }
+
+      .scan-button-inner {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(0, 243, 255, 0.2);
+        border-radius: 50%;
+        position: relative;
+      }
+
+      .scan-button-inner:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid var(--aether-blue);
+        transform: translate(-50%, -50%);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          width: 20px;
+          height: 20px;
+          opacity: 1;
         }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--night-black);
-            color: white;
-            font-family: var(--body-font);
-            overflow: hidden;
+        100% {
+          width: 60px;
+          height: 60px;
+          opacity: 0;
         }
-        
-        .ar-view {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
+      }
+
+      .inventory-button {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: rgba(10, 10, 18, 0.7);
+        border: 1px solid var(--prism-purple);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--prism-purple);
+      }
+
+      .inventory-icon {
+        width: 25px;
+        height: 25px;
+        background-color: var(--prism-purple);
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+      }
+
+      .lore-popup {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        max-width: 400px;
+        background-color: rgba(10, 10, 18, 0.9);
+        border: 1px solid var(--aether-blue);
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 20px var(--aether-blue);
+        display: none;
+      }
+
+      .lore-popup.active {
+        display: block;
+        animation: glitch 0.5s ease-out;
+      }
+
+      @keyframes glitch {
+        0% {
+          transform: translate(-50%, -50%) scale(0.9);
+          opacity: 0;
+          clip-path: inset(0 0 0 0);
         }
-        
-        .ar-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(10,10,18,0) 0%, rgba(10,10,18,0.3) 100%);
-            pointer-events: none;
+        20% {
+          clip-path: inset(20% 0 0 0);
         }
-        
-        /* UI Elements */
-        .compass {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 40px;
-            background-color: rgba(10,10,18,0.7);
-            border: 1px solid var(--aether-blue);
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 10px var(--aether-blue);
+        40% {
+          clip-path: inset(0 0 20% 0);
         }
-        
-        .compass-needle {
-            width: 120px;
-            height: 2px;
-            background: linear-gradient(90deg, var(--aether-blue), white);
-            position: relative;
-            transform: rotate(45deg);
+        60% {
+          clip-path: inset(0 20% 0 0);
         }
-        
-        .compass-needle:after {
-            content: 'N';
-            position: absolute;
-            right: -10px;
-            top: -10px;
-            color: white;
-            font-family: var(--ui-font);
-            font-size: 14px;
+        80% {
+          clip-path: inset(0 0 0 20%);
         }
-        
-        .mini-map {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 100px;
-            height: 100px;
-            background-color: rgba(10,10,18,0.7);
-            border: 1px solid var(--aether-blue);
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 0 10px var(--aether-blue);
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+          clip-path: inset(0 0 0 0);
         }
-        
-        .mini-map-content {
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, var(--aether-blue) 0%, transparent 5%);
-            position: relative;
+      }
+
+      .lore-title {
+        font-family: var(--header-font);
+        font-size: 24px;
+        color: var(--aether-blue);
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .lore-text {
+        font-family: var(--body-font);
+        font-size: 16px;
+        line-height: 1.5;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .lore-close {
+        font-family: var(--ui-font);
+        font-size: 14px;
+        color: var(--aether-blue);
+        text-align: center;
+        cursor: pointer;
+      }
+
+      /* Prism in AR view */
+      .ar-prism {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+      }
+
+      .prism-3d {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: rotate 10s linear infinite;
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotateY(0) rotateX(20deg);
         }
-        
-        .map-grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(to right, rgba(0,243,255,0.2) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0,243,255,0.2) 1px, transparent 1px);
-            background-size: 10px 10px;
+        100% {
+          transform: rotateY(360deg) rotateX(20deg);
         }
-        
-        .map-prism {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background-color: var(--prism-purple);
-            border-radius: 50%;
-            box-shadow: 0 0 5px var(--prism-purple);
+      }
+
+      .prism-face {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 50px solid rgba(0, 243, 255, 0.7);
+        transform-origin: 50% 100%;
+        box-shadow: 0 0 20px var(--aether-blue);
+      }
+
+      .prism-face:nth-child(1) {
+        transform: rotateY(0deg) translateZ(14.4px);
+      }
+
+      .prism-face:nth-child(2) {
+        transform: rotateY(72deg) translateZ(14.4px);
+      }
+
+      .prism-face:nth-child(3) {
+        transform: rotateY(144deg) translateZ(14.4px);
+      }
+
+      .prism-face:nth-child(4) {
+        transform: rotateY(216deg) translateZ(14.4px);
+      }
+
+      .prism-face:nth-child(5) {
+        transform: rotateY(288deg) translateZ(14.4px);
+      }
+
+      .prism-glow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle,
+          var(--aether-blue) 0%,
+          transparent 70%
+        );
+        opacity: 0.5;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        0% {
+          opacity: 0.3;
+          transform: scale(1);
         }
-        
-        .prism-counter {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            align-items: center;
-            font-family: var(--ui-font);
-            color: white;
+        100% {
+          opacity: 0.7;
+          transform: scale(1.2);
         }
-        
-        .prism-icon {
-            width: 30px;
-            height: 30px;
-            background-color: var(--prism-purple);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            margin-right: 10px;
-            box-shadow: 0 0 10px var(--prism-purple);
-        }
-        
-        .prism-count {
-            font-size: 24px;
-            text-shadow: 0 0 5px var(--prism-purple);
-        }
-        
-        .scan-button {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 70px;
-            background-color: rgba(10,10,18,0.7);
-            border: 2px solid var(--aether-blue);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 15px var(--aether-blue);
-        }
-        
-        .scan-button-inner {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(0,243,255,0.2);
-            border-radius: 50%;
-            position: relative;
-        }
-        
-        .scan-button-inner:after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--aether-blue);
-            transform: translate(-50%, -50%);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                width: 20px;
-                height: 20px;
-                opacity: 1;
-            }
-            100% {
-                width: 60px;
-                height: 60px;
-                opacity: 0;
-            }
-        }
-        
-        .inventory-button {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: rgba(10,10,18,0.7);
-            border: 1px solid var(--prism-purple);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--prism-purple);
-        }
-        
-        .inventory-icon {
-            width: 25px;
-            height: 25px;
-            background-color: var(--prism-purple);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        }
-        
-        .lore-popup {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 400px;
-            background-color: rgba(10,10,18,0.9);
-            border: 1px solid var(--aether-blue);
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 20px var(--aether-blue);
-            display: none;
-        }
-        
-        .lore-popup.active {
-            display: block;
-            animation: glitch 0.5s ease-out;
-        }
-        
-        @keyframes glitch {
-            0% {
-                transform: translate(-50%, -50%) scale(0.9);
-                opacity: 0;
-                clip-path: inset(0 0 0 0);
-            }
-            20% {
-                clip-path: inset(20% 0 0 0);
-            }
-            40% {
-                clip-path: inset(0 0 20% 0);
-            }
-            60% {
-                clip-path: inset(0 20% 0 0);
-            }
-            80% {
-                clip-path: inset(0 0 0 20%);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                clip-path: inset(0 0 0 0);
-            }
-        }
-        
-        .lore-title {
-            font-family: var(--header-font);
-            font-size: 24px;
-            color: var(--aether-blue);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .lore-text {
-            font-family: var(--body-font);
-            font-size: 16px;
-            line-height: 1.5;
-            color: white;
-            margin-bottom: 20px;
-        }
-        
-        .lore-close {
-            font-family: var(--ui-font);
-            font-size: 14px;
-            color: var(--aether-blue);
-            text-align: center;
-            cursor: pointer;
-        }
-        
-        /* Prism in AR view */
-        .ar-prism {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            top: 50%;
-            left: 30%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .prism-3d {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            animation: rotate 10s linear infinite;
-        }
-        
-        @keyframes rotate {
-            0% {
-                transform: rotateY(0) rotateX(20deg);
-            }
-            100% {
-                transform: rotateY(360deg) rotateX(20deg);
-            }
-        }
-        
-        .prism-face {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-bottom: 50px solid rgba(0,243,255,0.7);
-            transform-origin: 50% 100%;
-            box-shadow: 0 0 20px var(--aether-blue);
-        }
-        
-        .prism-face:nth-child(1) {
-            transform: rotateY(0deg) translateZ(14.4px);
-        }
-        
-        .prism-face:nth-child(2) {
-            transform: rotateY(72deg) translateZ(14.4px);
-        }
-        
-        .prism-face:nth-child(3) {
-            transform: rotateY(144deg) translateZ(14.4px);
-        }
-        
-        .prism-face:nth-child(4) {
-            transform: rotateY(216deg) translateZ(14.4px);
-        }
-        
-        .prism-face:nth-child(5) {
-            transform: rotateY(288deg) translateZ(14.4px);
-        }
-        
-        .prism-glow {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, var(--aether-blue) 0%, transparent 70%);
-            opacity: 0.5;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            0% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            100% {
-                opacity: 0.7;
-                transform: scale(1.2);
-            }
-        }
+      }
     </style>
-<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
-</head>
-<body>
+    <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+  </head>
+  <body>
     <div class="ar-view">
-        <div class="ar-overlay"></div>
-        
-        <!-- AR Prism -->
-        <div class="ar-prism">
-            <div class="prism-glow"></div>
-            <div class="prism-3d">
-                <div class="prism-face"></div>
-                <div class="prism-face"></div>
-                <div class="prism-face"></div>
-                <div class="prism-face"></div>
-                <div class="prism-face"></div>
-            </div>
+      <div class="ar-overlay"></div>
+
+      <!-- AR Prism -->
+      <div class="ar-prism">
+        <div class="prism-glow"></div>
+        <div class="prism-3d">
+          <div class="prism-face"></div>
+          <div class="prism-face"></div>
+          <div class="prism-face"></div>
+          <div class="prism-face"></div>
+          <div class="prism-face"></div>
         </div>
-        
-        <!-- UI Elements -->
-        <div class="compass">
-            <div class="compass-needle"></div>
+      </div>
+
+      <!-- UI Elements -->
+      <div class="compass">
+        <div class="compass-needle"></div>
+      </div>
+
+      <div class="mini-map">
+        <div class="mini-map-content">
+          <div class="map-grid"></div>
+          <div class="map-prism" style="top: 30%; left: 70%"></div>
+          <div class="map-prism" style="top: 60%; left: 40%"></div>
         </div>
-        
-        <div class="mini-map">
-            <div class="mini-map-content">
-                <div class="map-grid"></div>
-                <div class="map-prism" style="top: 30%; left: 70%;"></div>
-                <div class="map-prism" style="top: 60%; left: 40%;"></div>
-            </div>
+      </div>
+
+      <div class="prism-counter">
+        <div class="prism-icon"></div>
+        <div class="prism-count">3</div>
+      </div>
+
+      <div class="scan-button">
+        <div class="scan-button-inner"></div>
+      </div>
+
+      <div class="inventory-button">
+        <div class="inventory-icon"></div>
+      </div>
+
+      <!-- Lore Popup -->
+      <div class="lore-popup">
+        <div class="lore-title">Prism Discovered</div>
+        <div class="lore-text">
+          You hold a Prism. Data condensed into crystal. The city remembers you.
         </div>
-        
-        <div class="prism-counter">
-            <div class="prism-icon"></div>
-            <div class="prism-count">3</div>
-        </div>
-        
-        <div class="scan-button">
-            <div class="scan-button-inner"></div>
-        </div>
-        
-        <div class="inventory-button">
-            <div class="inventory-icon"></div>
-        </div>
-        
-        <!-- Lore Popup -->
-        <div class="lore-popup">
-            <div class="lore-title">Prism Discovered</div>
-            <div class="lore-text">You hold a Prism. Data condensed into crystal. The city remembers you.</div>
-            <div class="lore-close">TAP TO CONTINUE</div>
-        </div>
+        <div class="lore-close">TAP TO CONTINUE</div>
+      </div>
     </div>
-    
+
     <script>
-        // Simple interaction for mockup
-        document.querySelector('.scan-button').addEventListener('click', function() {
-            document.querySelector('.lore-popup').classList.add('active');
+      // Simple interaction for mockup
+      document
+        .querySelector('.scan-button')
+        .addEventListener('click', function () {
+          document.querySelector('.lore-popup').classList.add('active');
         });
-        
-        document.querySelector('.lore-popup').addEventListener('click', function() {
-            this.classList.remove('active');
+
+      document
+        .querySelector('.lore-popup')
+        .addEventListener('click', function () {
+          this.classList.remove('active');
         });
     </script>
-</body>
+  </body>
 </html>

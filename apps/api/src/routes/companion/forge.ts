@@ -1,5 +1,9 @@
 import { Request, Response } from 'express';
-import { makeEmptyState, validate, saveState } from '../../../../packages/companion-core/state';
+import {
+  makeEmptyState,
+  validate,
+  saveState,
+} from '../../../../packages/companion-core/state';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function postCreateCompanion(req: Request, res: Response) {
@@ -14,7 +18,7 @@ export async function postCreateCompanion(req: Request, res: Response) {
     const parsed = validate(base);
     saveState(parsed);
     return res.status(201).json(parsed);
-  } catch (err:any) {
+  } catch (err: any) {
     return res.status(500).json({ error: err.message || 'validation failed' });
   }
 }
@@ -27,10 +31,11 @@ export async function postAdapt(req: Request, res: Response) {
 export async function getCompanion(req: Request, res: Response) {
   // Read from the default path
   try {
-    const state = require('../../../../packages/companion-core/state').loadState();
+    const state =
+      require('../../../../packages/companion-core/state').loadState();
     if (!state) return res.status(404).json({ error: 'not found' });
     return res.json(state);
-  } catch (err:any) {
+  } catch (err: any) {
     return res.status(500).json({ error: err.message || 'error' });
   }
 }

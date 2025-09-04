@@ -20,6 +20,7 @@ This guide provides instructions for setting up and developing the Eternis-33: P
 ### API Keys
 
 You'll need to obtain the following API keys:
+
 - Mapbox API key for map integration
 - (Optional) Firebase or alternative backend service
 
@@ -89,6 +90,7 @@ const SERVER_URL = "ws://localhost:8080"  # For local development
 ### AR Development
 
 1. **Testing AR Features:**
+
    - Use Godot's AR simulation when possible
    - For real device testing, build to device frequently
 
@@ -100,6 +102,7 @@ const SERVER_URL = "ws://localhost:8080"  # For local development
 ### Location-Based Features
 
 1. **Testing Location Features:**
+
    - Use location simulation in development
    - Test with small GPS movements
    - Verify Prism anchoring accuracy
@@ -112,6 +115,7 @@ const SERVER_URL = "ws://localhost:8080"  # For local development
 ### Multiplayer Testing
 
 1. **Local Testing:**
+
    - Run the local server (`npm run dev`)
    - Connect multiple devices to test synchronization
 
@@ -177,6 +181,7 @@ git subtree push --prefix src/server heroku main
 ### Common AR Issues
 
 - **Plane Detection Problems:**
+
   - Ensure adequate lighting
   - Check for reflective or uniform surfaces
   - Verify ARCore/ARKit support on device

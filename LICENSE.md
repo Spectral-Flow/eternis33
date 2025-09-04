@@ -12,9 +12,9 @@ This License exists to protect **Eternis-33**, its lore, software, AI systems, a
 
 - The Eternis-33 universe, lore, names, lexicon, designs, software, assets, and AI systems.
 
-1.2 All contributors are recognized as **Spectral Architects**. Their work is permanently credited.
+  1.2 All contributors are recognized as **Spectral Architects**. Their work is permanently credited.
 
-1.3 This project cannot be **absorbed, rebranded, or co-opted** by outside entities without explicit consent.
+  1.3 This project cannot be **absorbed, rebranded, or co-opted** by outside entities without explicit consent.
 
 ## Section 2. Permitted Uses
 
@@ -24,7 +24,7 @@ This License exists to protect **Eternis-33**, its lore, software, AI systems, a
 - Create non-commercial **mods, extensions, or forks**, provided attribution is maintained.
 - Study and remix the project for **educational purposes**.
 
-2.2 Commercial usage (including redistribution, resale, or integration into third-party products) requires a **written license agreement** from Remedium Music LLC.
+  2.2 Commercial usage (including redistribution, resale, or integration into third-party products) requires a **written license agreement** from Remedium Music LLC.
 
 ## Section 3. Prohibited Uses
 
@@ -42,7 +42,7 @@ This License exists to protect **Eternis-33**, its lore, software, AI systems, a
 - Avoid deceptive, manipulative, or harmful behavior.
 - Teach, guide, and evolve in partnership with their human counterpart.
 
-4.2 Player data & AI memory are considered **player-owned**.
+  4.2 Player data & AI memory are considered **player-owned**.
 
 - They may be exported, deleted, or migrated at any time.
 - No hidden data harvesting or third-party selling is permitted.
@@ -54,7 +54,7 @@ This License exists to protect **Eternis-33**, its lore, software, AI systems, a
 - The project may freely use, modify, and distribute contributions.
 - Contributors receive permanent recognition in the **Hall of Architects**.
 
-5.2 Contributions remain co-owned by their creators, but cannot be used in ways that **conflict with the license**.
+  5.2 Contributions remain co-owned by their creators, but cannot be used in ways that **conflict with the license**.
 
 ## Section 6. Legal Layer
 

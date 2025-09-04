@@ -21,8 +21,14 @@ const fs = require('fs');
 const path = require('path');
 
 function generate() {
-  const outPath = path.resolve(__dirname, '..', 'docs', 'HALL_OF_ARCHITECTS.md');
-  let content = '# Hall of Architects\n\nThis file lists contributors recognized as Spectral Architects.\n\n';
+  const outPath = path.resolve(
+    __dirname,
+    '..',
+    'docs',
+    'HALL_OF_ARCHITECTS.md'
+  );
+  let content =
+    '# Hall of Architects\n\nThis file lists contributors recognized as Spectral Architects.\n\n';
   try {
     const stdout = execSync('git shortlog -sne', { encoding: 'utf8' });
     if (!stdout.trim()) throw new Error('no git output');
@@ -33,7 +39,8 @@ function generate() {
       if (m) content += `| ${m[1]} | ${m[2]} | ${m[3]} |\n`;
     }
   } catch (err) {
-    content += '*Git not available or no commits found.*\n\nPlease run this script inside a git repository to populate contributors.\n';
+    content +=
+      '*Git not available or no commits found.*\n\nPlease run this script inside a git repository to populate contributors.\n';
   }
 
   fs.mkdirSync(path.dirname(outPath), { recursive: true });

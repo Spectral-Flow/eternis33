@@ -36,8 +36,8 @@ Use in an app (React 17+)
 - Import components and engine:
 
   ```tsx
-  import { MoodRing, Eyes, ConsentPanel } from "@spectra/prime";
-  import { updateEmotion } from "@spectra/prime";
+  import { MoodRing, Eyes, ConsentPanel } from '@spectra/prime';
+  import { updateEmotion } from '@spectra/prime';
   ```
 
 - Render anywhere:

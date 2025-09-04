@@ -1,20 +1,24 @@
 # Eternis-33 Companion Module API Endpoints
 
 ## Overview
+
 The companion module exposes several API endpoints for integration with the main Eternis-33 game and real-world data sources. All endpoints return JSON responses and handle errors gracefully.
 
 ## Base URL
+
 `http://localhost:3000/api`
 
 ## Endpoints
 
 ### Initialize Companion
+
 Initializes the companion with a personality profile based on quiz responses.
 
 **URL**: `/companion/initialize`
 **Method**: `POST`
 **Auth Required**: No
 **Data Constraints**:
+
 ```json
 {
   "quizResponses": [0, 1, 2, 3, 1]
@@ -22,9 +26,11 @@ Initializes the companion with a personality profile based on quiz responses.
 ```
 
 **Data Parameters**:
+
 - `quizResponses` - Array of integers representing player's choices in the personality quiz
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -45,6 +51,7 @@ Initializes the companion with a personality profile based on quiz responses.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -53,12 +60,14 @@ Initializes the companion with a personality profile based on quiz responses.
 ```
 
 ### Process Player Input
+
 Processes player input and generates an appropriate AI response.
 
 **URL**: `/companion/process-input`
 **Method**: `POST`
 **Auth Required**: No
 **Data Constraints**:
+
 ```json
 {
   "input": "What is this Prism I found?",
@@ -71,10 +80,12 @@ Processes player input and generates an appropriate AI response.
 ```
 
 **Data Parameters**:
+
 - `input` - String representing player's question or statement
 - `context` - Object containing player's current game context
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -86,6 +97,7 @@ Processes player input and generates an appropriate AI response.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -94,6 +106,7 @@ Processes player input and generates an appropriate AI response.
 ```
 
 ### Get Coding Game
+
 Retrieves an appropriate coding game challenge based on player's skill level.
 
 **URL**: `/companion/coding-game`
@@ -102,6 +115,7 @@ Retrieves an appropriate coding game challenge based on player's skill level.
 **URL Parameters**: None
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -116,6 +130,7 @@ Retrieves an appropriate coding game challenge based on player's skill level.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -124,12 +139,14 @@ Retrieves an appropriate coding game challenge based on player's skill level.
 ```
 
 ### Process Real-World Data
+
 Processes real-world data and generates simulation feedback.
 
 **URL**: `/companion/real-world-data`
 **Method**: `POST`
 **Auth Required**: No
 **Data Constraints**:
+
 ```json
 {
   "dataType": "steps",
@@ -138,10 +155,12 @@ Processes real-world data and generates simulation feedback.
 ```
 
 **Data Parameters**:
+
 - `dataType` - String representing type of real-world data (steps, task_completed, journal_entry, coding_practice)
 - `value` - Numeric value representing the data measurement
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -154,6 +173,7 @@ Processes real-world data and generates simulation feedback.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -162,6 +182,7 @@ Processes real-world data and generates simulation feedback.
 ```
 
 ### Get Companion Status
+
 Retrieves the current status of the companion including personality profile and skill level.
 
 **URL**: `/companion/status`
@@ -170,6 +191,7 @@ Retrieves the current status of the companion including personality profile and 
 **URL Parameters**: None
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -207,6 +229,7 @@ Retrieves the current status of the companion including personality profile and 
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -215,12 +238,14 @@ Retrieves the current status of the companion including personality profile and 
 ```
 
 ### Update Companion Mood
+
 Updates the companion's current mood state.
 
 **URL**: `/companion/mood`
 **Method**: `POST`
 **Auth Required**: No
 **Data Constraints**:
+
 ```json
 {
   "mood": "happy"
@@ -228,9 +253,11 @@ Updates the companion's current mood state.
 ```
 
 **Data Parameters**:
+
 - `mood` - String representing the companion's mood state
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -241,6 +268,7 @@ Updates the companion's current mood state.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,
@@ -249,12 +277,14 @@ Updates the companion's current mood state.
 ```
 
 ### Update Companion Voice Tone
+
 Updates the companion's voice tone for TTS output.
 
 **URL**: `/companion/voice-tone`
 **Method**: `POST`
 **Auth Required**: No
 **Data Constraints**:
+
 ```json
 {
   "tone": "mysterious"
@@ -262,9 +292,11 @@ Updates the companion's voice tone for TTS output.
 ```
 
 **Data Parameters**:
+
 - `tone` - String representing the companion's voice tone
 
 **Success Response**:
+
 ```json
 {
   "success": true,
@@ -275,6 +307,7 @@ Updates the companion's voice tone for TTS output.
 ```
 
 **Error Response**:
+
 ```json
 {
   "success": false,

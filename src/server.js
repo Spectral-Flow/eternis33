@@ -37,24 +37,24 @@ const companion = new CompanionCore();
 app.post('/api/companion/initialize', async (req, res) => {
   try {
     const { quizResponses } = req.body;
-    
+
     if (!quizResponses || !Array.isArray(quizResponses)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid quiz responses'
+        error: 'Invalid quiz responses',
       });
     }
-    
+
     const result = await companion.initialize();
-    
+
     res.json({
       success: true,
-      data: result
+      data: result,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -63,24 +63,24 @@ app.post('/api/companion/initialize', async (req, res) => {
 app.post('/api/companion/process-input', async (req, res) => {
   try {
     const { input, context } = req.body;
-    
+
     if (!input) {
       return res.status(400).json({
         success: false,
-        error: 'Input is required'
+        error: 'Input is required',
       });
     }
-    
+
     const response = await companion.processInput(input, context);
-    
+
     res.json({
       success: true,
-      data: response
+      data: response,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -89,22 +89,22 @@ app.post('/api/companion/process-input', async (req, res) => {
 app.get('/api/companion/coding-game', (req, res) => {
   try {
     const game = companion.getCodingGame();
-    
+
     if (!game) {
       return res.status(400).json({
         success: false,
-        error: 'Companion not initialized'
+        error: 'Companion not initialized',
       });
     }
-    
+
     res.json({
       success: true,
-      data: game
+      data: game,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -113,24 +113,24 @@ app.get('/api/companion/coding-game', (req, res) => {
 app.post('/api/companion/real-world-data', (req, res) => {
   try {
     const { dataType, value } = req.body;
-    
+
     if (!dataType || value === undefined) {
       return res.status(400).json({
         success: false,
-        error: 'Both dataType and value are required'
+        error: 'Both dataType and value are required',
       });
     }
-    
+
     const feedback = companion.processRealWorldData(dataType, value);
-    
+
     res.json({
       success: true,
-      data: feedback
+      data: feedback,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -139,22 +139,22 @@ app.post('/api/companion/real-world-data', (req, res) => {
 app.get('/api/companion/status', (req, res) => {
   try {
     const status = companion.getStatus();
-    
+
     if (!status) {
       return res.status(400).json({
         success: false,
-        error: 'Companion not initialized'
+        error: 'Companion not initialized',
       });
     }
-    
+
     res.json({
       success: true,
-      data: status
+      data: status,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -163,26 +163,26 @@ app.get('/api/companion/status', (req, res) => {
 app.post('/api/companion/mood', (req, res) => {
   try {
     const { mood } = req.body;
-    
+
     if (!mood) {
       return res.status(400).json({
         success: false,
-        error: 'Mood is required'
+        error: 'Mood is required',
       });
     }
-    
+
     companion.updateMood(mood);
-    
+
     res.json({
       success: true,
       data: {
-        message: 'Companion mood updated'
-      }
+        message: 'Companion mood updated',
+      },
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
@@ -191,26 +191,26 @@ app.post('/api/companion/mood', (req, res) => {
 app.post('/api/companion/voice-tone', (req, res) => {
   try {
     const { tone } = req.body;
-    
+
     if (!tone) {
       return res.status(400).json({
         success: false,
-        error: 'Tone is required'
+        error: 'Tone is required',
       });
     }
-    
+
     companion.updateVoiceTone(tone);
-    
+
     res.json({
       success: true,
       data: {
-        message: 'Companion voice tone updated'
-      }
+        message: 'Companion voice tone updated',
+      },
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      error: error.message
+      error: error.message,
     });
   }
 });
